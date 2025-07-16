@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: readforce-backend
+    env: java
+    plan: free
+    buildCommand: "./gradlew build -x test"
+    startCommand: "java -jar build/libs/readforce-0.0.1-SNAPSHOT.jar"
+    envVars:
+      - key: SERVER_PORT
+        value: 10000
+      # --- 데이터베이스 및 Redis 연결 (올바른 문법) ---
+      # name에는 Render 대시보드에 보이는 서비스 이름을 정확히 적어야 합니다.
+      - key: SPRING_DATASOURCE_URL
+        fromDatabase:
+          name: readforce-db # 본인의 PostgreSQL 서비스 이름
+          property: connectionString
+      - key: SPRING_DATASOURCE_USERNAME
+        fromDatabase:
+          name: readforce-db # 본인의 PostgreSQL 서비스 이름
+          property: user
+      - key: SPRING_DATASOURCE_PASSWORD
+        fromDatabase:
+          name: readforce-db # 본인의 PostgreSQL 서비스 이름
+          property: password
+      - key: SPRING_DATA_REDIS_URL
+        fromRedis:
+          name: readforce-cache # 본인의 Redis 서비스 이름
+          property: connectionString
+      # --- 비밀 정보는 아래 Environment Group에서 불러옵니다 ---
+    envVarGroups:
+      - name: readforce-secrets # 아래에서 생성할 환경 변수 그룹 이름
