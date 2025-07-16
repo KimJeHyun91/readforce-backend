@@ -17,7 +17,7 @@ spring:
         show_sql: true
         format_sql: true
         hbm2ddl:
-          auto: none
+          auto: validate
   data:
     redis:
       host: localhost
