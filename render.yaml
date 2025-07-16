@@ -1,5 +1,0 @@
-services:
-  - type: web
-    name: readforce-backend
-    env: docker
-    plan: free
