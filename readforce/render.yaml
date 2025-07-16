@@ -24,7 +24,7 @@ services:
           property: password
       - key: SPRING_DATA_REDIS_URL
         fromRedis:
-          name: readforce-cache # 본인의 Redis 서비스 이름
+          name: readforce-redis # 본인의 Redis 서비스 이름
           property: connectionString
       # --- 비밀 정보는 아래 Environment Group에서 불러옵니다 ---
     envVarGroups:
