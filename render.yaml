@@ -1,9 +1,5 @@
 services:
   - type: web
     name: readforce-backend
+    env: docker
     plan: free
-    buildCommand: "./gradlew build -x test"
-    startCommand: "java -jar build/libs/readforce-0.0.1-SNAPSHOT.jar"
-    envVars:
-      - key: SERVER_PORT
-        value: 10000
