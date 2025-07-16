@@ -47,7 +47,7 @@ services:
       - key: KAKAO_CLIENT_SECRET
 
   # PostgreSQL 데이터베이스
-  - type: db
+  - type: postgres
     name: readforce-db
     databaseName: readforce   # 생성될 데이터베이스 이름
     databaseUser: readforce   # 생성될 사용자 이름
